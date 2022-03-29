@@ -11,6 +11,8 @@
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard v3</h1>
           </div><!-- /.col -->
+
+         
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -20,6 +22,21 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+    @if(Session::has('commanerrormassage'))
+    <div class="alert alert-success" id="success-alert">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <strong>   {{ Session::get('commanerrormassage') }}</strong>
+        @php
+            Session::forget('commanerrormassage');
+            
+        @endphp
+    </div>
+  <script>
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+    $("#success-alert").slideUp(500);
+});
+    </script>
+    @endif
     <!-- /.content-header -->
 
     <!-- Main content -->

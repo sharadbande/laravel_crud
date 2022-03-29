@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use hash;
 class LoginController extends Controller
@@ -62,16 +63,23 @@ function login_auth(Request $request)
  
     if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'] )))
     {  
-       
         
-        if (auth()->user()->is_admin == 1) {
-          
-             
+        
+        if (auth()->user()->is_admin == 1)
+         {
             return redirect()->route('AdminHome')->with('commanerrormassage','You are log in succesfully...!');
-        }else{
-         
-            return redirect()->route('admin/home');
-        }
+
+         }
+          elseif(auth()->user()->is_admin !== 1)
+            {
+                Auth::logout();
+                return redirect()->route('login_View')->with('commanerrormassage','You are not Authenticate User...!');
+            }
+             else
+              {
+                
+                return redirect()->route('login_View')->with('commanerrormassage','You are not Authenticate User...!');
+              }
     }
     else{ 
         
@@ -83,8 +91,7 @@ function login_auth(Request $request)
 
   function SignoutUser(Request $request) {
     
-  echo "SignoutUserSignoutUser";
-  die;
+   
     Auth::logout();
     return redirect('/');
   }

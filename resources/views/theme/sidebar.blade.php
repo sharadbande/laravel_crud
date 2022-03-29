@@ -16,7 +16,8 @@
           <img src="{!! url::asset('theme/dist/img/user2-160x160.jpg') !!}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{url('AdminHome')}}" class="d-block">Rushikesh Jadhav</a>
+          <a href="{{url('AdminHome')}}" class="d-block"> {{ auth()->user()->name;  }}</a>
+          <a href="{{url('SignoutUser')}}" class="d-block" style="color: grey"> LogOut</a>
         </div>
       </div>
 
