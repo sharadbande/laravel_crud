@@ -14,6 +14,10 @@ use Illuminate\Support\Arr;
 use App\Exports\BulkExport;
 use App\Imports\BulkImport;
 use Maatwebsite\Excel\Facades\Excel;
+ 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Route;
 
 class HomeController extends Controller
 {
@@ -172,7 +176,12 @@ public function AutoCity()
     
 }
 
-
+function SignoutUser(Request $request) {
+    
+   
+      Auth::logout();
+      return redirect()->route('login_View');
+    }
 
 
 

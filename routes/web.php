@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
  
-  
+use App\Http\Middleware\IsAdmin;
  
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
  
 
-    Route::get('/Home', 'App\Http\Controllers\HomeController@Homepage');
+    
     Route::get('/CRUD', 'App\Http\Controllers\HomeController@crud_opration');
     Route::POST('/Insertcrud', 'App\Http\Controllers\HomeController@Insert_crud');
 
@@ -44,9 +44,13 @@ Route::get('/', function () {
  
  
 //  login
-    Route::POST('/login-auth', 'App\Http\Controllers\Auth\LoginController@login_auth');
+    Route::get('/login_View', 'App\Http\Controllers\Auth\LoginController@loginView')->name('login_View'); 
+    Route::POST('/login-auth', 'App\Http\Controllers\Auth\LoginController@login_auth'); 
+    Route::get('SignoutUser', 'App\Http\Controllers\HomeController@SignoutUser')->name('SignoutUser'); 
 
-  
-    // ->name('admin.home')->middleware('is_admin');
- 
-    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+    
+
+    Route::middleware([is_admin::class])->group(function(){
+        Route::get('AdminHome', 'App\Http\Controllers\HomeController@Homepage')->name('AdminHome'); 
+
+    });

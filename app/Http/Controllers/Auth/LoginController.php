@@ -40,7 +40,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
+function loginView()
+{
+    return view('auth.login');
+}
 
 function login_auth(Request $request)
 { 
@@ -63,7 +66,8 @@ function login_auth(Request $request)
         
         if (auth()->user()->is_admin == 1) {
           
-            return redirect()->route('Home');
+             
+            return redirect()->route('AdminHome')->with('commanerrormassage','You are log in succesfully...!');
         }else{
          
             return redirect()->route('admin/home');
@@ -71,17 +75,16 @@ function login_auth(Request $request)
     }
     else{ 
         
-        return "Email-Address And Password Are Wrong";
-        die;
+        
 
-        return redirect()->route('login')
-            ->with('error','Email-Address And Password Are Wrong.');
+        return redirect()->route('login_View')->with('commanerrormassage','Email Id And Password Are Wrong.');
     }
 }
 
-public function logout(Request $request) {
+  function SignoutUser(Request $request) {
     
-  
+  echo "SignoutUserSignoutUser";
+  die;
     Auth::logout();
     return redirect('/');
   }

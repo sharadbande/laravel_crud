@@ -26,6 +26,18 @@
       @if($errors->has('email'))<div class="alert alert-danger" >{{ $errors->first('email') }}</div>@endif
       @if($errors->has('password'))<div class="alert alert-danger" >{{ $errors->first('password') }}</div>@endif
 
+
+      @if(Session::has('commanerrormassage'))
+      <div class="alert alert-danger">
+          {{ Session::get('commanerrormassage') }}
+          @php
+              Session::forget('commanerrormassage');
+          @endphp
+      </div>
+      @endif
+
+
+
       <form method="POST" action="{{ url('login-auth') }}">
         @csrf
         <div class="input-group mb-3">
