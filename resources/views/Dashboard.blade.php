@@ -22,12 +22,12 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    @if(Session::has('commanerrormassage'))
+    @if(Session::has('massage'))
     <div class="alert alert-success" id="success-alert">
       <button type="button" class="close" data-dismiss="alert">x</button>
-      <strong>   {{ Session::get('commanerrormassage') }}</strong>
+      <strong>   {{ Session::get('massage') }}</strong>
         @php
-            Session::forget('commanerrormassage');
+            Session::forget('massage');
             
         @endphp
     </div>

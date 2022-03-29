@@ -57,35 +57,30 @@ function login_auth(Request $request)
         'email' => 'required|email',
         'password' => 'required|min:6'
     ]);
- 
    
-    
- 
     if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'] )))
-    {  
-        
-        
+    {     
         if (auth()->user()->is_admin == 1)
          {
-            return redirect()->route('AdminHome')->with('commanerrormassage','You are log in succesfully...!');
+            return redirect()->route('AdminHome')->with('massage','You are log in succesfully...!');
 
          }
           elseif(auth()->user()->is_admin !== 1)
             {
                 Auth::logout();
-                return redirect()->route('login_View')->with('commanerrormassage','You are not Authenticate User...!');
+                return redirect()->route('login_View')->with('massage','You are not Authenticate User...!');
             }
              else
               {
                 
-                return redirect()->route('login_View')->with('commanerrormassage','You are not Authenticate User...!');
+                return redirect()->route('login_View')->with('massage','You are not Authenticate User...!');
               }
     }
     else{ 
         
         
 
-        return redirect()->route('login_View')->with('commanerrormassage','Email Id And Password Are Wrong.');
+        return redirect()->route('login_View')->with('massage','Email Id And Password Are Wrong.');
     }
 }
 

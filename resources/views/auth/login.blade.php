@@ -27,11 +27,11 @@
       @if($errors->has('password'))<div class="alert alert-danger" >{{ $errors->first('password') }}</div>@endif
 
 
-      @if(Session::has('commanerrormassage'))
+      @if(Session::has('massage'))
       <div class="alert alert-danger">
-          {{ Session::get('commanerrormassage') }}
+          {{ Session::get('massage') }}
           @php
-              Session::forget('commanerrormassage');
+              Session::forget('massage');
           @endphp
       </div>
       @endif

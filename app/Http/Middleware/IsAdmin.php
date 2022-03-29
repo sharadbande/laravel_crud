@@ -23,7 +23,7 @@ class IsAdmin
             return $next($request);
         }
         
-        return redirect('/')->with('error',"You don't have admin access.");
+        return redirect('/')->with('massage',"You don't have admin access.");
 
         
 
