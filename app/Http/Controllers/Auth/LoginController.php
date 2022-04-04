@@ -50,9 +50,7 @@ function login_auth(Request $request)
 { 
      
     $input = $request->all();
- // echo "<pre>";
- // print_r($input);
- // die;
+ 
     $this->validate($request, [
         'email' => 'required|email',
         'password' => 'required|min:6'
