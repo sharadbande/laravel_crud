@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use hash;
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     /*
@@ -50,16 +50,22 @@ function login_auth(Request $request)
 { 
      
     $input = $request->all();
-//  echo "<pre>";
-//  print_r($input);
-//  die;
+ // echo "<pre>";
+ // print_r($input);
+ // die;
     $this->validate($request, [
         'email' => 'required|email',
         'password' => 'required|min:6'
     ]);
+
+    
+    $remember_me = $request->has('remember_me') ? true : false; 
+ 
    
-    if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'] )))
+    if(auth()->attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $remember_me))
+
     {     
+         
         if (auth()->user()->is_admin == 1)
          {
             return redirect()->route('AdminHome')->with('massage','You are log in succesfully...!');

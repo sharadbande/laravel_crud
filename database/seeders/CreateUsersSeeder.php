@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 class CreateUsersSeeder extends Seeder
 {
     /**
@@ -17,16 +18,16 @@ class CreateUsersSeeder extends Seeder
        
         $user=[
             [
+                'name'=>'Sharad Bande',
+                'email'=>'sharad@demo.com',
+                'is_admin'=>'1',
+                'password'=> '123456',
+            ],
+            [
                 'name'=>'Admin',
                 'email'=>'admin@demo.com',
                 'is_admin'=>'1',
-                'password'=> bcrypt('123456'),
-            ],
-            [
-                'name'=>'User',
-                'email'=>'user@demo.com',
-                'is_admin'=>'0',
-                'password'=> bcrypt('123456'),
+                'password'=> '123456',
             ],
         ];
   
